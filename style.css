@@ -18,8 +18,8 @@ body {
 }
 
 .container {
-   width: 90vw;
-   height: 90vw;
+   width: 90vh;
+   height: 90vh;
    margin: 0 auto;
    margin-top: 4rem;
    max-width: 850px;
