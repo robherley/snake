@@ -46,6 +46,7 @@ class Game {
       this.initStyle();
       this.initSnake(3);
       this.newPickup();
+      this.direction = 'down';
       this.loopInterval = setInterval(() => this.loop(), this.speed);
       _.addEventListener('keydown', e => this.handleKeyDown(e));
       this.menu.style.display = 'none';
@@ -134,11 +135,14 @@ class Game {
 
    checkCollisions() {
       const [hd, ...tail] = this.snake;
+      // check walls
       if (hd.x < 1 || hd.y < 1 || hd.x > this.size || hd.y > this.size)
          return false;
+      // check the rest of the body
       for (const part of tail) {
          if (hd.x === part.x && hd.y === part.y) return false;
       }
+      // check if we are about to pickup
       if (hd.x === this.pickup.x && hd.y === this.pickup.y) {
          this.pendingAdd++;
          this.newPickup();
